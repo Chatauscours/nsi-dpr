@@ -54,20 +54,33 @@ def solution(taille_totale, trou_x, trou_y, taille_base,trou_ici = True, chemin 
             trou_carre = 1
         else:
             trou_carre = 2
+    else:
+        trou_carre = 42 #Pour que personne ne pense qu'il soit ici
+    
     print(taille_totale)
     if taille_totale == 2 and trou_ici == True:
         affichage(trou_carre, trou_ici)
-    elif taille_totale == 2: 
-        if int(chemin[-1]) - int(chemin[-2]) == 2 or int(chemin[-1]) - int(chemin[-2]) == -2: 
+    elif taille_totale == 2:
+        if len(chemin) < 2:
+            affichage(int(chemin[-1])+2)
+        elif int(chemin[-1]) - int(chemin[-2]) == 2 or int(chemin[-1]) - int(chemin[-2]) == -2 and trou_ici == False: 
             #Si ils sont de cotés opposés
-            affichage(chemin[-1])
+            affichage(int(chemin[-1]))
         else:
-            affichage(chemin[-1]+2)
+            affichage(int(chemin[-1])+2)
     else:
-        solution(taille_totale/2, trou_x, trou_y, taille_base, trou_ici == 0, chemin + "0")
-        solution(taille_totale/2, trou_x, trou_y - taille_totale/2, taille_base, trou_ici == 1, chemin + "1")
-        solution(taille_totale/2, trou_x - taille_totale/2, trou_y - taille_totale/2, taille_base, trou_ici == 2, chemin + "2")
-        solution(taille_totale/2, trou_x - taille_totale/2, trou_y, taille_base, trou_ici == 3, chemin + "3")
+        solution(taille_totale/2, trou_x, trou_y, taille_base, trou_carre == 0, chemin + "0")
+        turtle.setheading(270)
+        turtle.forward(taille_base*taille_totale/2)
+        solution(taille_totale/2, trou_x, trou_y - taille_totale/2, taille_base, trou_carre == 1, chemin + "1")
+        turtle.setheading(0)
+        turtle.forward(taille_base*taille_totale/2)
+        solution(taille_totale/2, trou_x - taille_totale/2, trou_y - taille_totale/2, taille_base, trou_carre == 2, chemin + "2")
+        turtle.setheading(90)
+        turtle.forward(taille_base*taille_totale/2)
+        solution(taille_totale/2, trou_x - taille_totale/2, trou_y, taille_base, trou_carre == 3, chemin + "3")
+        turtle.setheading(180)
+        turtle.forward(taille_base*taille_totale/2)
     
 
 def demarrage():
