@@ -55,39 +55,39 @@ def solution(taille_totale, trou_x, trou_y, taille_base,trou_ici = True, chemin 
     else:
         trou_carre = 42 #Pour que personne ne pense qu'il soit ici
     
-    print(taille_totale)
+    #print(taille_totale)
     if taille_totale == 2 and trou_ici == True: #Si on est dans le cas de base ET le trou est ici
         affichage(trou_carre, taille_base, trou_ici)
     
     elif taille_totale == 2: #Si on est dans le cas de base ET le trou n'est PAS ici
         if len(chemin) < 2:
-            affichage(int(chemin[-1])+2, taille_base)
-        elif int(chemin[-1]) - int(chemin[-2]) == 2 or int(chemin[-1]) - int(chemin[-2]) == -2 and trou_ici == False: ### A MODIFIER STAT
+            affichage(chemin[-1][0]+2, taille_base)
+        elif chemin[-1][0] - chemin[-2][0] == 2 or chemin[-1][0] - chemin[-2][0] == -2 and trou_ici == False: ### A MODIFIER STAT
             #Si ils sont de cotés opposés
-            affichage(int(chemin[-1]),taille_base)
+            affichage(chemin[-1][0],taille_base)
         else:
-            affichage(int(chemin[-1])+2,taille_base)
+            affichage(chemin[-1][0]+2,taille_base)
     
     else: #Si on n'est pas dans le cas de base
-        solution(taille_totale/2, trou_x, trou_y, taille_base, trou_carre == 0, chemin + [("0",trou_carre == 0)])
+        solution(taille_totale/2, trou_x, trou_y, taille_base, trou_carre == 0, chemin + [(0,trou_carre == 0)])
         turtle.setheading(270)
         turtle.forward(taille_base*taille_totale/2)
-        solution(taille_totale/2, trou_x, trou_y - taille_totale/2, taille_base, trou_carre == 1, chemin + [("1",trou_carre == 1)])
+        solution(taille_totale/2, trou_x, trou_y - taille_totale/2, taille_base, trou_carre == 1, chemin + [(1,trou_carre == 1)])
         turtle.setheading(0)
         turtle.forward(taille_base*taille_totale/2)
-        solution(taille_totale/2, trou_x - taille_totale/2, trou_y - taille_totale/2, taille_base, trou_carre == 2, chemin + [("2",trou_carre == 2)])
+        solution(taille_totale/2, trou_x - taille_totale/2, trou_y - taille_totale/2, taille_base, trou_carre == 2, chemin + [(2,trou_carre == 2)])
         turtle.setheading(90)
         turtle.forward(taille_base*taille_totale/2)
-        solution(taille_totale/2, trou_x - taille_totale/2, trou_y, taille_base, trou_carre == 3, chemin + [("3",trou_carre == 3)])
+        solution(taille_totale/2, trou_x - taille_totale/2, trou_y, taille_base, trou_carre == 3, chemin + [(3,trou_carre == 3)])
         turtle.setheading(180)
         turtle.forward(taille_base*taille_totale/2)
     
 
 def demarrage():
-    n = 3
-    x = 1
-    y = 2
-    base = 50
+    n = 5
+    x = 5
+    y = 3
+    base = 20
     #à modifier le code au dessus en imput
 
     total = 2**n
